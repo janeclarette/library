@@ -22,19 +22,19 @@
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required >
             </div>
             <div class="mb-3">
                 <label for="transactiondate" class="form-label">Transaction Date</label>
-                <input type="date" class="form-control" id="transactiondate" name="transactiondate" value="{{ old('transactiondate') }}">
+                <input type="date" class="form-control" id="transactiondate" name="transactiondate" value="{{ old('transactiondate') }}" required>
             </div>
             <div class="mb-3">
                 <label for="quantity" class="form-label">Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ old('quantity') }}">
+                <input type="number" class="form-control" id="quantity" name="quantity" value="{{ old('quantity') }}" required>
             </div>
             <div class="mb-3">
                 <label for="img_path" class="form-label">Images</label>
-                <input type="file" class="form-control" id="img_path" name="img_path[]" multiple>
+                <input type="file" class="form-control" id="img_path" name="img_path[]" multiple required>
             </div>
             <div class="mb-3">
                 <label for="book_id" class="form-label">Book</label>

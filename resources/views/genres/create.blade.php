@@ -13,15 +13,15 @@
             @csrf
             <div class="mb-3">
                 <label for="name">Name:</label>
-                <input type="text" id="name" class="form-control" name="name">
+                <input type="text" id="name" class="form-control" name="name" required>
             </div>
             <div class="mb-3">
                 <label for="description">Description:</label>
-                <textarea id="description" class="form-control" name="description"></textarea>
+                <textarea id="description" class="form-control" name="description" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="img_path">Images:</label>
-                <input type="file" id="img_path" class="form-control" name="img_path[]" multiple>
+                <input type="file" id="img_path" class="form-control" name="img_path[]" multiple required>
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Create Genre</button>

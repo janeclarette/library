@@ -20,20 +20,20 @@
             @csrf
             <div class="mb-3">
                 <label for="name">Name:</label>
-                <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}">
+                <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" required>
                 
             </div>
             <div class="mb-3">
                 <label for="price">Price:</label>
-                <input type="text" id="price" class="form-control" name="price" value="{{ old('price') }}">
+                <input type="number" id="price" class="form-control" name="price" value="{{ old('price') }}" required>
             </div>
             <div class="mb-3">
                 <label for="stock">Stock:</label>
-                <input type="text" id="stock" class="form-control" name="stock" value="{{ old('stock') }}">
+                <input type="number" id="stock" class="form-control" name="stock" value="{{ old('stock') }}" required >
             </div>
             <div class="mb-3">
             <label for="img_path" class="form-label">Images:</label>
-                    <input type="file" class="form-control" id="img_path" name="img_path[]" multiple>
+                    <input type="file" class="form-control" id="img_path" name="img_path[]" multiple required>
             </div>
             <div class="mb-3">
                 <label for="author_id">Author:</label>

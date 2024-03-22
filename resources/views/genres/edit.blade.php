@@ -23,18 +23,18 @@
             @method('PUT')
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $genre->name }}">
+                <input type="text" class="form-control" id="name" name="name" value="{{ $genre->name }}" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description">{{ $genre->description }}</textarea>
+                <textarea class="form-control" id="description" name="description" required>{{ $genre->description }}</textarea>
             </div>
             <div class="mb-3">
                 <label for="img_path" class="form-label">Images</label><br>
                 @foreach(explode(',', $genre->img_path) as $image)
-                    <img src="{{ asset($image) }}" alt="Genre Image" style="max-width: 200px;"><br>
+                    <img src="{{ asset($image) }}" alt="Genre Image" style="max-width: 200px;" ><br>
                 @endforeach
-                <input type="file" class="form-control" id="img_path" name="img_path[]" multiple>
+                <input type="file" class="form-control" id="img_path" name="img_path[]" multiple required>
             </div>
             <button type="submit" class="btn btn-primary">Update Genre</button>
         </form>

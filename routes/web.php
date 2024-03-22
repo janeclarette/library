@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,7 @@ use App\Http\Controllers\SupplierController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::middleware('auth')->group(function () {
 Route::get('/author', [AuthorController::class, 'index'])->name('authors.index') ;
 Route::get('/author/create', [AuthorController::class, 'create'])->name('authors.create') ;
 Route::post('/author/store', [AuthorController::class, 'store'])->name('authors.store');
@@ -52,20 +53,17 @@ Route::put('/suppliers/{supplier}', [SupplierController::class, 'update'])->name
 Route::get('/suppliers/{supplier}', [SupplierController::class, 'delete'])->name('suppliers.delete');
 
 
-
-
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
 
 require __DIR__.'/auth.php';
