@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description')->nullable();
             $table->integer('price');
-            $table->integer('stock');
             $table->text('img_path')->nullable();
             $table->unsignedBigInteger('author_id'); 
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade'); // Assuming the authors table is named 'authors'

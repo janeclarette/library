@@ -25,11 +25,25 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        // Attempt to authenticate the user
+        if (Auth::attempt($request->only('email', 'password'))) {
+            // Check if the authenticated user is active
+            if (auth()->user()->is_active) {
+                // Regenerate session data
+                $request->session()->regenerate();
+                // Redirect the user to their intended page or home
+                return redirect()->intended(RouteServiceProvider::HOME);
+            } else {
+                // If the user is not active, logout and redirect with an error message
+                Auth::logout();
+                return back()->with('error', 'Your account is deactivated. Please contact the administrator.');
+            }
+        }
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // If authentication fails, redirect back with error message
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
     /**

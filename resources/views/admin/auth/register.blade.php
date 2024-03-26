@@ -1,12 +1,7 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.register') }}" enctype="multipart/form-data">
         @csrf
 
-        <div>
-            <label for="img_path" class="form-label">User Image</label>
-            <input type="file" class="form-control" id="img_path" name="img_path" accept="image/*" required>
-            <x-input-error :messages="$errors->get('img_path')" class="mt-2" />
-        </div>
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />

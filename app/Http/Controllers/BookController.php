@@ -27,16 +27,13 @@ class BookController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
+            'description' => 'nullable|string', // Add description validation rule
             'price' => 'required|numeric',
-            'stock' => 'required|numeric',
             'img_path.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'author_id' => 'required|exists:authors,id',
-            'genre_id' => 'required|exists:genres,id', // Add this line for genre_id validation
+            'genre_id' => 'required|exists:genres,id',
         ]);
-        
     
-        
-
         // Handling multiple image upload
         $imagePaths = [];
         if ($request->hasFile('img_path')) {
@@ -46,11 +43,11 @@ class BookController extends Controller
                 $imagePaths[] = 'images/' . $imageName;
             }
         }
-
+    
         $data['img_path'] = implode(',', $imagePaths);
-
+    
         $newBook = Book::create($data);
-
+    
         return redirect(route('books.index'))->with('success', 'Book created successfully');
     }
 
@@ -63,33 +60,33 @@ class BookController extends Controller
 
     
     public function update(Request $request, Book $book)
-    {
-        $data = $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
-            'stock' => 'required|numeric',
-            'img_path.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'author_id' => 'required|exists:authors,id',
-            'genre_id' => 'required|exists:genres,id'
-        ]);
-    
-        // Handling multiple image upload
-        $imagePaths = [];
-        if ($request->hasFile('img_path')) {
-            foreach ($request->file('img_path') as $image) {
-                $imageName = $image->getClientOriginalName();
-                $image->move(public_path('images'), $imageName);
-                $imagePaths[] = 'images/' . $imageName;
-            }
+{
+    $data = $request->validate([
+        'name' => 'required',
+        'description' => 'nullable|string', // Add description validation rule
+        'price' => 'required|numeric',
+        'img_path.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'author_id' => 'required|exists:authors,id',
+        'genre_id' => 'required|exists:genres,id',
+    ]);
+
+    // Handling multiple image upload
+    $imagePaths = [];
+    if ($request->hasFile('img_path')) {
+        foreach ($request->file('img_path') as $image) {
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+            $imagePaths[] = 'images/' . $imageName;
         }
-    
-        $data['img_path'] = implode(',', $imagePaths);
-    
-        // Update the book record with the validated data
-        $book->update($data);
-    
-        return redirect(route('books.index'))->with('success', 'Book updated successfully');
     }
+
+    $data['img_path'] = implode(',', $imagePaths);
+
+    // Update the book record with the validated data
+    $book->update($data);
+
+    return redirect(route('books.index'))->with('success', 'Book updated successfully');
+}
     
 
     public function delete(Book $book)

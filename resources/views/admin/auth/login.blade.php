@@ -2,17 +2,8 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
-    @csrf
-
-<!-- Check if there are any validation errors -->
-
-        <!-- Check if there is a specific error message from the controller -->
-        @if (session('error'))
-            <div>
-                <p>{{ session('error') }}</p>
-            </div>
-        @endif
+    <form method="POST" action="{{ route('admin.login') }}">
+        @csrf
 
         <!-- Email Address -->
         <div>

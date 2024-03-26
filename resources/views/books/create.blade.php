@@ -16,45 +16,44 @@
             </div>
         @endif
     </div>
-        <form method="post" action="{{ route('books.store') }}" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-3">
-                <label for="name">Name:</label>
-                <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" required>
-                
-            </div>
-            <div class="mb-3">
-                <label for="price">Price:</label>
-                <input type="number" id="price" class="form-control" name="price" value="{{ old('price') }}" required>
-            </div>
-            <div class="mb-3">
-                <label for="stock">Stock:</label>
-                <input type="number" id="stock" class="form-control" name="stock" value="{{ old('stock') }}" required >
-            </div>
-            <div class="mb-3">
+    <form method="post" action="{{ route('books.store') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-3">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" name="name" value="{{ old('name') }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description">Description:</label>
+            <textarea id="description" class="form-control" name="description">{{ old('description') }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price">Price:</label>
+            <input type="number" id="price" class="form-control" name="price" value="{{ old('price') }}" required>
+        </div>
+        <div class="mb-3">
             <label for="img_path" class="form-label">Images:</label>
-                    <input type="file" class="form-control" id="img_path" name="img_path[]" multiple required>
-            </div>
-            <div class="mb-3">
-                <label for="author_id">Author:</label>
-                <select name="author_id" class="form-control" id="author_id">
-                    @foreach ($authors as $author)
-                        <option value="{{ $author->id }}">{{ $author->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="genre_id">Genre:</label>
-                <select name="genre_id" class="form-control" id="genre_id">
-                    @foreach ($genres as $genre)
-                        <option value="{{ $genre->id }}">{{ $genre->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Create Book</button>
-            </div>
-        </form>
-    </div>
+            <input type="file" class="form-control" id="img_path" name="img_path[]" multiple required>
+        </div>
+        <div class="mb-3">
+            <label for="author_id">Author:</label>
+            <select name="author_id" class="form-control" id="author_id">
+                @foreach ($authors as $author)
+                    <option value="{{ $author->id }}">{{ $author->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="genre_id">Genre:</label>
+            <select name="genre_id" class="form-control" id="genre_id">
+                @foreach ($genres as $genre)
+                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Create Book</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

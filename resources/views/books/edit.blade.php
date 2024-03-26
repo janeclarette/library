@@ -26,14 +26,14 @@
                     <div class="invalid-feedback">Please provide a name for the book.</div>
                 </div>
                 <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea id="description" name="description" class="form-control">{{ $book->description }}</textarea>
+                    <div class="invalid-feedback">Please provide a description for the book.</div>
+                </div>
+                <div class="mb-3">
                     <label for="price" class="form-label">Price:</label>
                     <input type="number" id="price" name="price" class="form-control" value="{{ $book->price }}" required>
                     <div class="invalid-feedback">Please provide a valid price for the book.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="stock" class="form-label">Stock:</label>
-                    <input type="number" id="stock" name="stock" class="form-control" value="{{ $book->stock }}" readonly>
-                    <div class="invalid-feedback">Please provide a valid stock quantity for the book.</div>
                 </div>
                 <div class="mb-3">
                     <label for="img_path" class="form-label">Image:</label>

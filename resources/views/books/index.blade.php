@@ -17,10 +17,10 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Description</th> <!-- Added Description column -->
                     <th>Author</th>
                     <th>Genre</th>
                     <th>Price</th>
-                    <th>Stock</th>
                     <th>Image</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -31,10 +31,10 @@
                 <tr>
                     <td>{{ $book->id }}</td>
                     <td>{{ $book->name }}</td>
+                    <td>{{ $book->description }}</td> <!-- Display description -->
                     <td>{{ $book->author->name }}</td>
                     <td>{{ optional($book->genre)->name }}</td>
                     <td>{{ $book->price }}</td>
-                    <td>{{ $book->stock }}</td>
                     <td>
                         @foreach (explode(',', $book->img_path) as $imagePath)
                             <img src="{{ asset($imagePath) }}" alt="Book Image" style="max-width: 100px; max-height: 100px; margin-right: 10px;">
@@ -44,7 +44,7 @@
                         <a href="{{ route('books.edit', $book->id) }}"><i class="fas fa-edit"></i></a>
                     </td>
                     <td>
-                    <a href="{{ route('books.delete', $book->id) }}" onclick="return confirm('Are you sure you want to delete this book?')"><i class="fas fa-trash" style="color:red"></i></a>
+                        <a href="{{ route('books.delete', $book->id) }}" onclick="return confirm('Are you sure you want to delete this book?')"><i class="fas fa-trash" style="color:red"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -54,7 +54,7 @@
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#books-table').DataTable();
