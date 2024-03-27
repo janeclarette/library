@@ -82,6 +82,6 @@ Route::get('/admin/dashboard', [UserController::class, 'showDashboard'])->name('
 Route::post('/admin/user/{user}/activate', [UserController::class, 'activate'])->name('admin.user.activate');
 Route::put('/admin/user/{user}/deactivate', [UserController::class, 'deactivate'])->name('admin.user.deactivate');
 
-
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
 
