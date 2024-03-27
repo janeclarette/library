@@ -1,14 +1,16 @@
-<div style="position: relative;">
 
+<div style="position: relative; width: 100vw; height: 100vh;">
     <!-- Video Background -->
-    <video autoplay muted loop id="video-background" style="position: absolute; width: 150%; height: 100%; z-index: -1;">
+    <video autoplay muted loop id="video-background" style="position: absolute; top: -118px; ">
         <source src="../images/BG1.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
     <!-- Form -->
-    <div style="position: relative; z-index: 1;">
-        <x-guest-layout class="min-h-screen flex flex-col sm:justify-center items-center py-6 sm:py-0">
+    <div style="position: relative; z-index: 1;" class="bg-transparent-custom">
+
+        <x-guest-layout class="bg-cover ">
+
 
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
