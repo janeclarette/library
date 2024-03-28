@@ -39,4 +39,10 @@
             @endforeach
         </tbody>
     </table>
+
 @endif
+
+<form action="{{ route('admin.logout') }}" method="POST">
+    @csrf <!-- Add CSRF token for security -->
+    <button type="submit">Logout</button>
+</form>

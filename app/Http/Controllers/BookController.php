@@ -95,6 +95,21 @@ class BookController extends Controller
         return redirect(route('books.index'))->with('success', 'Book deleted successfully');
     }
     
+    //search function
+    public function searchproperty(Request $request)
+    {
+        $search = $request->input('search');
+    
+        // Retrieve books that match the search query and eager load suppliers relationship
+        $books = Book::with('suppliers')
+                     ->where('name', 'LIKE', "%$search%")
+                     ->paginate(10);
+    
+        return view('admin.dashboard', compact('books'));
+    }
+    
+
+
 
 
 }

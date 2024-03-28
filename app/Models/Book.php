@@ -9,6 +9,7 @@ class Book extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'book_id',
         'name',
         'description',
         'price',
@@ -23,10 +24,13 @@ class Book extends Model
         return $this->belongsTo(Author::class);
     }
 
-    public function genre()
-{
-    return $this->belongsTo(Genre::class);
-}
+        public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
 
-
+    public function suppliers()
+    {
+        return $this->hasMany(Supplier::class);
+    }
 }
