@@ -12,6 +12,13 @@ class UserController extends Controller
         $users = User::all(); // Retrieve all users from the database
         return view('admin.dashboard', compact('users'));
     }
+    
+    public function dashboard()
+    {
+        $users = User::all(); // Fetch all users (you may need to adjust this query)
+
+        return view('users.dashboard', compact('users'));
+    }
 
     public function activate(User $user)
     {
