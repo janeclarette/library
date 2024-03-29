@@ -16,6 +16,6 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "datatables.net": "^2.0.2"
+        "datatables.net": "^2.0.3"
     }
 }

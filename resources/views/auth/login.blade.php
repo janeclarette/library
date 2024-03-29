@@ -1,22 +1,21 @@
-
-<div style="position: relative; width: 100vw; height: 100vh;">
+<div style="position: relative; display: flex; justify-content: center;">
     <!-- Video Background -->
-    <video autoplay muted loop id="video-background" style="position: absolute; top: -118px; ">
+    <video autoplay muted loop id="video-background" style="position: absolute; top: -118px;">
         <source src="../images/BG1.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
     <!-- Form -->
-    <div style="position: relative; z-index: 1;" class="bg-transparent-custom">
+    <div style="position: relative; ">
 
-        <x-guest-layout class="bg-cover ">
-
+        <x-guest-layout>
 
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 shadow-md overflow-hidden sm:rounded-lg bg-transparent">
-                <form method="POST" action="{{ route('login') }}">
+            <div class="w-full">
+                <form method="POST" action="{{ route('login') }}" class="relative px-9 py-10">
+
                     @csrf
 
                     <!-- Check if there are any validation errors -->
@@ -26,6 +25,9 @@
                             <p>{{ session('error') }}</p>
                         </div>
                     @endif
+
+                    <h1 class="text-center text-2xl font-bold -mt-3.5 mb-2">Log in</h1>
+                    <p class=" text-center mb-2">Welcome back, you've been missed!</p>
 
                     <!-- Email Address -->
                     <div>
@@ -52,16 +54,17 @@
                         </label>
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        @if (Route::has('password.request'))
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                                {{ __('Forgot your password?') }}
-                            </a>
-                        @endif
-
-                        <x-primary-button class="ml-3">
-                            {{ __('Log in') }}
-                        </x-primary-button>
+                    <div class=" -mb-2 mt-2"> <!-- Moved the button to the bottom and added margin-top for spacing -->
+                        <div class="flex items-center justify-end">
+                            @if (Route::has('password.request'))
+                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                            @endif
+                            <x-primary-button class="bg-amber-950 button ml-4">
+                                {{ __('Log in') }}
+                            </x-primary-button>
+                        </div>
                     </div>
                 </form>
             </div>
