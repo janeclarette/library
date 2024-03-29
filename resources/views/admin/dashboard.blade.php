@@ -14,9 +14,19 @@
             padding: 0;
             height: 100%;
         }
+        .content {
+            margin-left: 200px; /* Adjusted for the width of the sidebar */
+            padding-top: 10vh; /* Adjusted for the height of the header */
+        }
 
-        /* Header Dashboard Styles */
+
+
         .header-dashboard {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -24,8 +34,8 @@
             background: linear-gradient(to right, #3a2307, #6d4009);
             color: white;
             height: 10vh;
-            font-family: 'Montserrat', sans-serif;
-        }
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        } 
 
         .logo-title {
             display: flex;
@@ -39,111 +49,117 @@
         .title {
             font-size: 1.5rem;
             margin-left: 1rem;
+            user-select: none;
         }
 
         .search-bar {
             flex-grow: 1;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            justify-content: center;
+            align-items: center;
             margin: 0 1rem;
         }
 
         .search-input {
-            width: 100%; /* Full width */
-            max-width: 500px; /* Maximum width */
+            width: 100%;
+            max-width: 500px;
             padding: 0.5rem;
             border-radius: 10px;
             border: none;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.486);
             transition: background-color 0.3s;
-            box-sizing: border-box; /* Include padding in width */
+            box-sizing: border-box;
         }
 
         .search-input:focus {
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgb(255, 255, 255);
         }
 
-        .profile-dropdown {
-            position: relative;
-        }
-
+        /* Profile Picture Styles */
         .profile-pic {
             width: 40px;
             height: 40px;
-            border-radius:50%;
-            cursor: pointer;
+            border-radius: 50%;
             margin-right: 30px;
+            user-select: none;
         }
 
-        .dropdown-content {
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 200px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: none;
-        }
 
-        .dropdown-item {
-            display: block;
-            width: 100%;
-            padding: 0.5rem;
-            text-align: left;
-            color: #333;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .dropdown-item:hover {
-            background-color: #f1f1f1;
-        }
-
-        /* Navigation Sidebar Styles */
         .navigation-sidebar {
+            position: fixed;
+            top: 10vh;
+            left: 0;
             display: flex;
             flex-direction: column;
             padding: 1rem;
             background-color: #3c2507;
             color: white;
-            height: 604px;
+            height: 100%;
             width: 200px;
+            user-select: none;
         }
+        
 
         .navigation-sidebar a {
             display: flex;
             align-items: center;
             margin-bottom: 0.5rem;
-            padding: 0.5rem;
+            padding: 1rem;
             border-radius: 5px;
             color: white;
             text-decoration: none;
-            transition: transform 0.3s, color 0.3s; /* Added transform and color transitions */
+            transition: transform 0.3s, color 0.3s;
+            font-size: 1.2rem;
+            user-select: none;
         }
 
         .navigation-sidebar a:hover {
-            background-color: #888e9c;
-            transform: translateX(10px); /* Move the link to the right on hover */
-            color: #f8f8f8; /* Change the text color on hover */
-        }
-
-        .navigation-sidebar .icon {
-            margin-right: 10px;
-            transition: margin-right 0.3s; /* Added margin-right transition */
+            transform: translateX(10px);
+            color: #bc8181d5;
         }
 
         .navigation-sidebar a:hover .icon {
-            margin-right: 20px; /* Adjusted margin-right on hover */
+            margin-right: 30px;
+        }
+
+        .navigation-sidebar a p {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-left: 10px;
+            user-select: none;
+        }
+
+        /* Profile Dropdown Styles */
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #3c2507;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 10px;
+        }
+
+        .profile-dropdown-content a {
+            color: white;
+            padding: 14px 18px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .profile-dropdown-content a:hover {
+            background-color: #555;
+        }
+
+        .profile-dropdown:hover .profile-dropdown-content {
+            display: block;
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Header Dashboard -->
     <div class="header-dashboard">
         <!-- Logo and Title -->
         <div class="logo-title">
@@ -156,59 +172,60 @@
             <input type="text" placeholder="Search..." class="search-input">
         </div>
 
-        <!-- Profile Picture and Dropdown -->
+        <!-- Profile Picture -->
         <div class="profile-dropdown">
             <!-- Profile Picture -->
-            <img src="../images/Rizza.jpg" alt="Profile" class="profile-pic" id="profileDropdownTrigger">
-
-            <!-- Dropdown -->
-            <div class="dropdown-content" id="profileDropdown">
-                <a href="#" class="dropdown-item">Profile</a>
-                <form action="{{ route('admin.logout') }}" method="POST">
-                    @csrf <!-- Add CSRF token for security -->
-                    <button type="submit" class="dropdown-item">Logout</button>
-                </form>
+            <img src="../images/Rizza.jpg" alt="Profile" class="profile-pic">
+            <div class="profile-dropdown-content">
+                <a href="profile.php">Profile</a>
+                <a href="../admin/auth/login.php">Logout</a>
             </div>
         </div>
+
+
     </div>
 
     <!-- Navigation Sidebar -->
     <div class="navigation-sidebar">
         <a href="{{ route('authors.index') }}" class="icon">
-            <i class='bx bxs-dashboard'></i> Authors
+            <i class='bx bxs-dashboard'></i><p> Authors </p>
         </a>
         <a href="{{ route('books.index') }}" class="icon">
-            <i class='bx bxs-book'></i> Books
+            <i class='bx bxs-book'></i> <p>Books</p>
         </a>
         <a href="{{ route('genres.index') }}" class="icon">
-            <i class='bx bxs-objects-horizontal-left'></i> Genres
+            <i class='bx bxs-objects-horizontal-left'></i> <p> Genres </p>
         </a>
         <a href="{{ route('suppliers.index') }}" class="icon">
-            <i class='bx bxs-group'></i> Suppliers
+            <i class='bx bxs-group'></i> <p> Suppliers </p>
         </a>
         <a href="{{ route('users.dashboard') }}" class="icon">
-            <i class='bx bxs-user-account'></i> Users
+            <i class='bx bxs-user-account'></i><p> Users</p>
         </a>
     </div>
 
+    <div class="content">
+        @yield('content')
+    </div>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const profileDropdownTrigger = document.getElementById('profileDropdownTrigger');
-            const profileDropdown = document.getElementById('profileDropdown');
+        // JavaScript for profile dropdown
+        document.addEventListener("DOMContentLoaded", function() {
+            const profileDropdown = document.querySelector('.profile-dropdown');
+            const profileDropdownContent = document.querySelector('.profile-dropdown-content');
 
-            profileDropdownTrigger.addEventListener('click', function () {
-                profileDropdown.classList.toggle('hidden');
+            profileDropdown.addEventListener('mouseover', function() {
+                profileDropdownContent.style.display = 'block';
             });
 
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function (event) {
-                if (!profileDropdownTrigger.contains(event.target)) {
-                    profileDropdown.classList.add('hidden');
-                }
+            profileDropdown.addEventListener('mouseout', function() {
+                profileDropdownContent.style.display = 'none';
             });
         });
     </script>
 
+
 </body>
+
 
 </html>

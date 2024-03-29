@@ -1,3 +1,4 @@
+@include('../admin/dashboard')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,14 @@
     <title>Edit Genre</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    body{
+        margin-top: 30px;
+        margin-left: 240px;
+        margin-right: 100px;
+        user-select: none;
+    }
+    </style>
 <body>
     <div class="container">
         <h1>Edit Genre</h1>
