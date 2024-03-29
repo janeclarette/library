@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/viewproduct/{id}', [DashboardController::class, 'view'])->middleware(['auth', 'verified'])->name('viewproduct');
 
 require __DIR__.'/auth.php';
 

@@ -31,4 +31,16 @@ public function index()
     return view('dashboard', compact('books'));
 }
 
+public function view($id)
+{
+    // Debugging statement to check book ID
+    //dd($id);
+
+    $book = Book::findOrFail($id);
+    return view('users.viewproduct', compact('book'));
 }
+
+
+}
+
+

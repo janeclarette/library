@@ -22,7 +22,6 @@
                             @foreach ($book->suppliers as $supplier)
                                 <p>Quantity Supplied: {{ $supplier->quantity }}</p>
                             @endforeach
-
                             <p>Author: {{ $book->author->name }}</p>
                             <p>Genre: {{ $book->genre->name }}</p>
                             <form action="{{ route('cart.add', $book->id) }}" method="POST">
@@ -31,9 +30,11 @@
                                     Add to Cart
                                 </button>
                             </form>
+                            
                             <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                                <a href="">View Details</a>
-                            </button>
+    <a href="{{ route('viewproduct', $book->id) }}">View Details</a>
+</button>
+ 
                         </div>
                     @endforeach
                 </div>
