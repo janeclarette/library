@@ -15,6 +15,13 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('cart')" :active="request()->routeIs('cart.index')">
+                    {{ __('Cart') }}
+                </x-nav-link>
+                <form action="{{route('dashboard')}}" method="GET" class="mt-4">
+                    <input type="text" name="search" placeholder="Search a Book" class="border border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500">
+                    <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md ml-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Search</button>
+                </form>
                 </div>
             </div>
 

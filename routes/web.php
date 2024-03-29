@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminRegistrationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/profile/update-image', [ProfileController::class, 'updateImage'])->name('profile.update-image');
+
+    Route::post('/cart/add/{book}', [CartController::class, 'add'])->name('cart.add');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart'); // Update the route name
+    Route::post('/reduce-by-one/{id}', [CartController::class, 'reduceByOne'])->name('reduceByOne');
+    Route::post('/remove-item/{id}', [CartController::class, 'removeItem'])->name('removeItem');
+
+    
+
 });
 
 
@@ -81,7 +91,5 @@ require __DIR__.'/adminauth.php';
 Route::get('/admin/dashboard', [UserController::class, 'showDashboard'])->name('admin.dashboard');
 Route::post('/admin/user/{user}/activate', [UserController::class, 'activate'])->name('admin.user.activate');
 Route::put('/admin/user/{user}/deactivate', [UserController::class, 'deactivate'])->name('admin.user.deactivate');
-
-Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
 

@@ -3,25 +3,59 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
+use App\Models\Cart;
+
 
 class CartController extends Controller
-{
-    public function addToCart(Request $request)
+
+{   
+
+
+    public function index()
     {
-        // Validate the incoming request data
-        $request->validate([
-            'book_id' => 'required|exists:books,id',
-            'quantity' => 'required|integer|min:1',
-        ]);
 
-        // Create a new cart item
-        $cartItem = new Cart();
-        $cartItem->user_id = auth()->id(); // Assuming the user is authenticated
-        $cartItem->book_id = $request->input('book_id');
-        $cartItem->quantity = $request->input('quantity');
-        $cartItem->save();
+        $cartItems = Cart::where('user_id', auth()->id())->get();
+        return view('cart', compact('cartItems'));
+    }
 
-        // Optionally, you can return a response indicating success
-        return response()->json(['message' => 'Item added to cart successfully']);
+    public function add(Request $request, Book $book)
+    {
+        $cart = Cart::where('user_id', auth()->id())
+                    ->where('book_id', $book->id)
+                    ->first();
+    
+        if ($cart) {
+            $cart->quantity++;
+            $cart->save();
+        } else {
+            Cart::create([
+                'user_id' => auth()->id(),
+                'book_id' => $book->id,
+                'quantity' => 1,
+            ]);
+        }
+    
+        return redirect()->back()->with('success', 'Book added to cart successfully.');
+    }
+    public function reduceByOne($id)
+    {
+        $cartItem = Cart::findOrFail($id);
+
+        if ($cartItem->quantity > 1) {
+            $cartItem->quantity--;
+            $cartItem->save();
+        } else {
+            $cartItem->delete();
+        }
+
+        return redirect()->route('cart')->with('success', 'Item quantity reduced by one.');
+    }
+
+    public function removeItem($id)
+    {
+        Cart::findOrFail($id)->delete();
+
+        return redirect()->route('cart')->with('success', 'Item removed from cart.');
     }
 }
