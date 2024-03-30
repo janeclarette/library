@@ -30,8 +30,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem;
-            background: linear-gradient(to right, #3a2307, #6d4009);
+            background: linear-gradient(to right, #9BABB8, #967E76);
             color: white;
             height: 10vh;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -40,39 +39,20 @@
         .logo-title {
             display: flex;
             align-items: center;
+            margin-top: 20px;
+            margin-left:-10px;
         }
 
         .logo {
             height: 40px;
+            margin-bottom: 12px;
+            margin-left: 20px;
         }
 
         .title {
             font-size: 1.5rem;
             margin-left: 1rem;
             user-select: none;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 1rem;
-        }
-
-        .search-input {
-            width: 100%;
-            max-width: 500px;
-            padding: 0.5rem;
-            border-radius: 10px;
-            border: none;
-            background-color: rgba(255, 255, 255, 0.486);
-            transition: background-color 0.3s;
-            box-sizing: border-box;
-        }
-
-        .search-input:focus {
-            background-color: rgb(255, 255, 255);
         }
 
         /* Profile Picture Styles */
@@ -92,7 +72,7 @@
             display: flex;
             flex-direction: column;
             padding: 1rem;
-            background-color: #3c2507;
+            background-color: #9BABB8;
             color: white;
             height: 100%;
             width: 200px;
@@ -167,11 +147,6 @@
             <h1 class="title">BookHub</h1>
         </div>
 
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <input type="text" placeholder="Search..." class="search-input">
-        </div>
-
         <!-- Profile Picture -->
         <div class="profile-dropdown">
             <!-- Profile Picture -->
@@ -187,6 +162,7 @@
 
     <!-- Navigation Sidebar -->
     <div class="navigation-sidebar">
+        
         <a href="{{ route('authors.index') }}" class="icon">
             <i class='bx bxs-dashboard'></i><p> Authors </p>
         </a>
