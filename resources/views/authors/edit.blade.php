@@ -12,16 +12,57 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <style>
         body{
-            margin-top: 45px;
             margin-left: 250px;
             margin-right: 200px;
+            color: white;
             user-select: none;
+             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
+    
+            .container-main {
+                width:83rem;
+                background-color: #EEE9DA; /* Light Brown color */
+                padding: 40px;
+                margin-left: -50px;
+                margin-top: -23px;
+                height: 690px;
+            }
+    
+            .inner-container {
+                background-color: #967E76; /* Light Gray color */
+                padding: 50px; /* Padding for the inner container */
+                border-radius: 5px; /* Rounded corners for the inner container */
+                margin-left: 1px;
+                height: 600px;
+                margin-top: 23px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+    
+    
+            h2 {
+                color: white;
+                /* margin-top: 2px; */
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+
+    
+            .table-responsive {
+                overflow: auto;
+            }
+    
+            .btn-primary{
+                background-color: #b94f4fe2;
+                border-color: #b94f4fe2;
+            }
+    
     </style>
 </head>
 <body>
-    <h1>Edit Author</h1>
+    <div class="container-main">
+        <div class="inner-container"> 
     <div class="form-group">
+
+        <h2>Edit Author</h2>
         <form method="post" action="{{ route('authors.update', $author->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT') 
