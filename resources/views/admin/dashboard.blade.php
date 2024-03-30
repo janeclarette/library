@@ -172,15 +172,22 @@
             <input type="text" placeholder="Search..." class="search-input">
         </div>
 
-        <!-- Profile Picture -->
         <div class="profile-dropdown">
-            <!-- Profile Picture -->
-            <img src="../images/Rizza.jpg" alt="Profile" class="profile-pic">
-            <div class="profile-dropdown-content">
-                <a href="profile.php">Profile</a>
-                <a href="../admin/auth/login.php">Logout</a>
-            </div>
-        </div>
+    <!-- Profile Picture -->
+    <img src="../images/Rizza.jpg" alt="Profile" class="profile-pic">
+    <div class="profile-dropdown-content">
+    <a href=>Profile</a>
+        <a href="{{ route('admin.logout') }}"
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+        </a>
+        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </div>
+</div>
+
+
 
 
     </div>

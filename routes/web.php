@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminRegistrationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +69,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/reduce-by-one/{id}', [CartController::class, 'reduceByOne'])->name('reduceByOne');
     Route::post('/remove-item/{id}', [CartController::class, 'removeItem'])->name('removeItem');
 
-    
+    Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
+
+
+   
+
 
 });
 
@@ -88,10 +93,18 @@ Route::get('/admin/dashboard', function () {
 
 require __DIR__.'/adminauth.php';
 
-// web.php
+
 Route::get('/admin/dashboard', [UserController::class, 'showDashboard'])->name('admin.dashboard');
 Route::post('/admin/user/{user}/activate', [UserController::class, 'activate'])->name('admin.user.activate');
 Route::put('/admin/user/{user}/deactivate', [UserController::class, 'deactivate'])->name('admin.user.deactivate');
 
 Route::get('/users/dashboard', [UserController::class, 'dashboard'])->name('users.dashboard');
 
+Route::get('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])->name('checkout.dashboard');
+
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+
+
+Route::post('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])->name('checkout.dashboard');
+Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');

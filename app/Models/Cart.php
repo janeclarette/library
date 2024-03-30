@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'book_id', 'quantity'];
+    protected $fillable = [
+        'user_id',
+        'book_id',
+        'quantity',
+        'processed', // Add processed to the fillable attributes
+    ];
+
+    protected $casts = [
+        'processed' => 'boolean', // Cast processed attribute to boolean
+    ];
 
     public function user()
     {

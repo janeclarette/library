@@ -1,5 +1,3 @@
-@extends('../admin/dashboard')
-@section('content')
 
 
 <x-app-layout>
@@ -35,9 +33,9 @@
                                 </button>
                             </form>
                             
-                            <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-    <a href="{{ route('viewproduct', $book->id) }}">View Details</a>
-</button>
+                                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{ route('viewproduct', $book->id) }}">View Details</a>
+    </button>
  
                         </div>
                     @endforeach
@@ -47,4 +45,3 @@
     </div>
 </x-app-layout>
 
-@endsection
