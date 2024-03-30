@@ -47,8 +47,13 @@
 
     .btn-primary {
         background-color: #b94f4fe2;
-        border-color: #b94f4fe2;
+        border-color: #480000;
     }
+    .btn-primary:hover {
+            background-color: maroon; /* Green color on hover */
+            border-color: #4B0000;
+            transition: 200ms;
+        }
 
     .mb-3 {
         margin-bottom: 20px; 

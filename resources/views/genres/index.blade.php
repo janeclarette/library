@@ -8,9 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genres</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
+  </head>
 <body>
 
     <style>
@@ -30,11 +32,12 @@
         }
     
         .inner-container {
-            background-color: #967E76; 
+            background-color: #978D8D; 
             padding: 20px; 
             border-radius: 5px;
             margin-left: 7px;
             height: 600px;
+            overflow-y: auto;
         }
     
         .table-full-width {
@@ -64,7 +67,12 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             background-color: #b94f4fe2; 
             color: white; 
-            border-color: #50320de2; 
+            border-color: #480000; 
+        }
+        .btn-success:hover {
+            background-color: maroon; /* Green color on hover */
+            border-color: #4B0000;
+            transition: 200ms;
         }
     
         .p {
@@ -76,6 +84,7 @@
         .table-responsive {
             overflow: auto;
         }
+        
     </style>
     
 
@@ -124,8 +133,8 @@
         </table>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             $('#genres-table').DataTable();

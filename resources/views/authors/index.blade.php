@@ -29,11 +29,12 @@
         }
 
         .inner-container {
-            background-color: #967E76; /* Light Gray color */
+            background-color: #978D8D; /* Light Gray color */
             padding: 20px; /* Padding for the inner container */
             border-radius: 5px; /* Rounded corners for the inner container */
             margin-left: 20px;
             height: 600px;
+            overflow-y: auto;
         }
 
         .table-full-width {
@@ -59,7 +60,14 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             background-color: #b94f4fe2; 
             color: white; 
-            border-color: #50320de2; 
+            border-color: #4B0000; 
+            transition: 200ms;
+        }
+
+        .btn-success:hover {
+            background-color: maroon; /* Green color on hover */
+            border-color: #4B0000;
+            transition: 200ms;
         }
 
         .p {

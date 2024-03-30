@@ -31,11 +31,12 @@
     }
 
     .inner-container {
-        background-color: #967E76;
+        background-color: #978D8D;
         padding: 20px;
         border-radius: 5px;
         margin-left: 27px;
         height: 600px;
+        overflow-y: auto;
     }
 
     .table-full-width {
@@ -57,26 +58,36 @@
         color: rgb(0, 0, 0); 
     }
 
-    h2 {
-        margin-top: 25px;
-        color: white;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    .container h2.text-left {
+    margin-top: 25px !important;
+    margin-bottom: 0px !important;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .container .p {
+        color: rgb(250, 250, 250);
+        margin-top: -10px !important;
+        margin-bottom: 0 !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .btn-primary {
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         background-color: #b94f4fe2;
         color: white;
-        border-color: #50320de2;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        border-color: #4B0000;
+        margin-top: 0px;
+        margin-bottom: 20px;
     }
+    .btn-primary:hover {
+            background-color: maroon; /* Green color on hover */
+            border-color: #4B0000;
+            transition: 200ms;
+        }
+    
 
-    .p {
-        color: rgb(250, 250, 250);
-        margin-top: -25px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    
 
     .table-responsive {
         overflow: auto;
@@ -85,18 +96,22 @@
     /* Adjust the search bar */
     div.dataTables_wrapper div.dataTables_filter input {
         color: rgb(0, 0, 0) !important; 
-        background-color: #ffffff !important; 
+        background-color: #ffffff !imvportant; 
     }
 </style>
 
 <body>
-
+    
     <div class="container-main">
         <div class="inner-container">
             <div class="container">
                 <h2 class="text-left mb-4">Book Lists</h2>
                 <p>Organize collection of books </p>
                 <a href="{{ route('books.create') }}" role="button"  class=" btn btn-primary" aria-disabled="true">Add Book</a>
+                
+                
+                
+                
                 <table id="books-table" class="table table-bordered table-striped">
 
                     <thead class=" bg-gradient-primary text-center">
@@ -146,9 +161,12 @@
     <script>
         $(document).ready(function() {
             $('#books-table').DataTable({
-                "paging": true,
+                "paging": true,             // Enable pagination
+                "lengthMenu": [10, 25, 50, 100],  // Define the entries per page options
+                "pageLength": 10,           // Initial number of entries per page
                 "ordering": true,
-                "info": true
+                "info": true,
+                "columnDefs": [{ "orderable": false, "targets": [6, 7, 8] }]  // Disable ordering for specific columns
             });
         });
     </script>

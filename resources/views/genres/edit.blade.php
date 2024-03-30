@@ -1,4 +1,19 @@
 @include('../admin/dashboard')
+
+<script>
+    // Dynamic update of logo and profile picture
+    document.addEventListener("DOMContentLoaded", function() {
+        const logo = '../images/logo1.png';  // Replace with the actual path of the logo
+        const profilePic = '../images/Rizza.jpg';  // Replace with the actual path of the profile picture
+
+        const logoElement = document.querySelector('.logo');
+        const profilePicElement = document.querySelector('.profile-pic');
+
+        logoElement.src = logo;
+        profilePicElement.src = profilePic;
+    });
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +48,7 @@
             height: 600px;
             margin-top: 23px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-y: auto;
         }
 
 
@@ -48,9 +64,13 @@
 
         .btn-primary{
             background-color: #b94f4fe2;
-            border-color: #b94f4fe2;
+            border-color: #480000;
         }
-
+        .btn-primary:hover {
+            background-color: maroon; /* Green color on hover */
+            border-color: #4B0000;
+            transition: 200ms;
+        }
 </style>
 <body>
     <div class="container-main">

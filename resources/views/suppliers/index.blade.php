@@ -29,11 +29,12 @@
     }
 
     .inner-container {
-        background-color: #967E76;
+        background-color: #978D8D;
         padding: 20px;
         border-radius: 5px;
         margin-left: -2px;
         height: 600px;
+        overflow-y: auto;
     }
 
     .table-full-width {
@@ -67,10 +68,15 @@
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         background-color: #b94f4fe2;
         color: white;
-        border-color: #50320de2;
+        border-color: #480000;
         margin-top: 10px;
         margin-bottom: -10px;
     }
+    .btn-primary:hover {
+            background-color: maroon; /* Green color on hover */
+            border-color: #4B0000;
+            transition: 200ms;
+        }
 
     .p {
         color: rgb(250, 250, 250);
