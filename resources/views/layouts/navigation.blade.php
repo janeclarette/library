@@ -1,4 +1,17 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<style>
+    .header-bg{
+        background: linear-gradient(to right, #9BABB8, #967E76);
+        user-select: none;
+    }
+    .bg-custom {
+    background-color: #8ea7bb;
+}
+    .bg-custom:hover{
+        background-color: #4f7492;    
+    }
+</style>  
+
+<nav x-data="{ open: false }" class="header-bg">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -23,8 +36,10 @@
     </x-nav-link>
                 
                 <form action="{{route('dashboard')}}" method="GET" class="mt-4">
-                    <input type="text" name="search" placeholder="Search a Book" class="border border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500">
-                    <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md ml-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Search</button>
+                    <input type="text" name="search" placeholder="Search a Book" class="border border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" style="width: 600px; height: 30px;">
+                    <button class="bg-custom hover:bg-custom:hover text-white font-bold py-1 px-4 rounded">
+                        Search
+                    </button>
                 </form>
                 </div>
             </div>

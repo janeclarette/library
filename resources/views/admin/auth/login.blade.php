@@ -1,3 +1,13 @@
+<div style="position: relative; display: flex; justify-content: center;">
+    <!-- Video Background -->
+    <video autoplay muted loop id="video-background" style="position: absolute; top: -118px;">
+        <source src="../images/BG1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+
+    <div style="position: relative; ">
+
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

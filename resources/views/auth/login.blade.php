@@ -5,7 +5,6 @@
         Your browser does not support the video tag.
     </video>
 
-    <!-- Form -->
     <div style="position: relative; ">
 
         <x-guest-layout>

@@ -30,7 +30,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to right, #9BABB8, #967E76);
+            background: linear-gradient(to right, #9babb8, #967E76);
             color: white;
             height: 10vh;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
