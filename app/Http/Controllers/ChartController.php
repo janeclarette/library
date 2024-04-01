@@ -6,21 +6,34 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Order;
+use App\Charts\TopSellingBooksChart;
 use DB;
 
 class ChartController extends Controller
 {
-    public function topSellingBooks()
+    public function TopSellingBooks()
     {
-        $topSellingBooks = Book::select('books.name', DB::raw('COUNT(carts.id) as orders_count'))
+        $topSellingBooks = Book::select('name', DB::raw('COUNT(carts.id) as orders_count'))
             ->leftJoin('carts', 'books.id', '=', 'carts.book_id')
-            ->groupBy('books.id', 'books.name') // Include books.name in the GROUP BY clause
+            ->groupBy('books.id', 'books.name')
             ->orderByDesc('orders_count')
-            ->limit(10)
+            ->limit(5)
             ->get();
     
-        return response()->json($topSellingBooks);
+        $topSellingBooksData = [
+            'labels' => $topSellingBooks->pluck('name'),
+            'datasets' => [
+                [
+                    'label' => 'Top Selling Books',
+                    'backgroundColor' => '#7158e2',
+                    'data' => $topSellingBooks->pluck('orders_count')
+                ]
+            ]
+        ];
+    
+        return response()->json($topSellingBooksData);
     }
+    
 
     public function revenueByGenre()
     {
@@ -40,7 +53,6 @@ class ChartController extends Controller
     
         return response()->json($monthlySalesTrend);
     }
-    
     
     
 }

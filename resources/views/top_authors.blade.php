@@ -1,7 +1,8 @@
 @extends('layouts.master')
+
 @section('content')
     <div class="container">
-        {!! $topSellingBooksChart->container() !!}
+        {!! $topAuthorsChart->container() !!}
     </div>
-    {!! $topSellingBooksChart->script() !!}
+    {!! $topAuthorsChart->script() !!}
 @endsection

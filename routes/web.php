@@ -13,6 +13,13 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\TopSellingBooksController;
+use App\Http\Controllers\RevenueByGenreChartController;
+use App\Http\Controllers\MonthlySalesTrendController;
+use App\Http\Controllers\TopAuthorsController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -118,6 +125,9 @@ Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
 Route::get('/order/dashboard', [OrderController::class, 'dashboard'])->name('order.dashboard');
 
-Route::get('/charts/top-selling-books', [ChartController::class, 'topSellingBooks']);
-Route::get('/charts/revenue-by-genre', [ChartController::class, 'revenueByGenre']);
+Route::get('/top-selling-books', [TopSellingBooksController::class, 'TopSellingBooks']);
+
 Route::get('/charts/monthly-sales-trend', [ChartController::class, 'monthlySalesTrend']);
+Route::get('/revenue-by-genre', [RevenueByGenreChartController::class, 'revenueByGenre']);
+Route::get('/monthly-sales-trend', [MonthlySalesTrendController::class, 'monthlySalesTrend']);
+Route::get('/top-authors', [TopAuthorsController::class, 'topAuthors'])->name('top_authors');
