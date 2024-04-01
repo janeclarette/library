@@ -30,6 +30,7 @@
                         <!-- Payment method, shipping fee, and courier form -->
                         <form action="{{ route('place-order') }}" method="POST" class="mt-6">
                             @csrf
+                            <input type="hidden" name="book_id" value="{{ $book ? $book->id : '' }}">
                             <div class="mb-4">
                                 <label for="payment_method" class="block text-sm font-medium text-gray-700">Payment Method:</label>
                                 <select name="payment_method" id="payment_method" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">

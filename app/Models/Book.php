@@ -37,5 +37,8 @@ class Book extends Model
     {
         return $this->hasMany(Order::class, 'book_id');
     }
-    
+    public function reviews()
+    {
+        return $this->hasManyThrough(OrderReview::class, Order::class);
+    }
 }

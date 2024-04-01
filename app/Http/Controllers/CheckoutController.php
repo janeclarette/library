@@ -18,14 +18,15 @@ class CheckoutController extends Controller
 {
     public function showDashboard()
     {
-        // Retrieve selected item IDs from the session or any other storage mechanism
         $selectedItems = session('selected_items', []);
-
-        // Fetch the selected items from the database
         $cartItems = Cart::whereIn('id', $selectedItems)->get();
-
-        return view('checkout.dashboard', compact('cartItems'));
+        
+        // Fetch the book associated with the first item in the cart (assuming there's only one book per order)
+        $book = $cartItems->isNotEmpty() ? $cartItems->first()->book : null;
+    
+        return view('checkout.dashboard', compact('cartItems', 'book'));
     }
+    
 
     public function placeOrder(Request $request)
     {
@@ -38,14 +39,16 @@ class CheckoutController extends Controller
         // Store order details
         $order = new Order();
         $order->user_id = auth()->id();
-        $order->date_ordered = Carbon::now();
+        $order->book_id = $request->input('book_id'); 
+        $order->date_ordered = now();
         $order->courier = $request->input('courier');
-        $order->status = 'Pending'; // You can set the initial status as 'Pending'
+        $order->status = 'Pending';
         $order->payment_method = $request->input('payment_method');
-        $order->shipping_fee = 0; // Set shipping fee to 0
+        $order->shipping_fee = 0;
         $order->save();
+        
 
-        // Subtract quantity ordered from quantity supplied by the supplier
+
         foreach ($cartItems as $item) {
             $supplier = Supplier::where('book_id', $item->book_id)->first();
             if ($supplier) {

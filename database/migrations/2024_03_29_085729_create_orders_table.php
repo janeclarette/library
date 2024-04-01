@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('book_id'); // Add the book_id column
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade'); // Define the foreign key constraint
             $table->dateTime('date_ordered');
             $table->string('courier');
             $table->string('status');

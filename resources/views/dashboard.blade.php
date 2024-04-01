@@ -133,6 +133,31 @@
                             @endforeach
                             <p>Author: {{ $book->author->name }}</p>
                             <p>Genre: {{ $book->genre->name }}</p>
+                            <p> Rating: 
+                            @if ($book->reviews_avg_rating)
+                                @php
+                                    $rating = $book->reviews_avg_rating;
+                                    $fullStars = floor($rating);
+                                    $halfStar = $rating - $fullStars >= 0.5 ? true : false;
+                                @endphp
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $fullStars)
+                                        <i class="bx bxs-star"></i> 
+                                    @elseif ($halfStar)
+                                        @if ($i == $fullStars + 1)
+                                            <i class="bx bxs-star-half"></i> 
+                                        @else
+                                            <i class="bx bxs-star"></i> 
+                                        @endif
+                                    @else
+                                        <i class="bx bx-star"></i> 
+                                    @endif
+                                @endfor
+                            @else
+                                No ratings yet.
+                            @endif
+                        </p>
+
                             <div class="container-buttons">   
                                 <form action="{{ route('cart.add', $book->id) }}" method="POST">
                                     @csrf
@@ -143,7 +168,8 @@
                                 <button class="bg-rose-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                                     <a href="{{ route('viewproduct', $book->id) }}">View Details</a>
                                 </button>
-                            </div>    
+                            </div>
+                                
                         </div>
                     @endforeach
                 </div>

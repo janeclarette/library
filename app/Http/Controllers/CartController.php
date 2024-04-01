@@ -46,6 +46,22 @@ class CartController extends Controller
         // Redirect back to the cart page
         return redirect()->back()->with('success', 'Book added to cart successfully.');
     }
+
+    public function increment(Cart $item)
+    {
+        // Check if the item belongs to the authenticated user
+        if ($item->user_id !== auth()->id()) {
+            abort(403); // Unauthorized
+        }
+    
+        // Increment the quasntity
+        $item->quantity++;
+        $item->save();
+    
+        return redirect()->back()->with('success', 'Quantity incremented successfully');
+    }
+    
+
     public function reduceByOne($id)
     {
         $cartItem = Cart::findOrFail($id);

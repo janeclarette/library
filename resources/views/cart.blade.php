@@ -23,7 +23,7 @@
                                         </div>
                                         
                                         <div class="flex items-center">
-                                            <form action="{{ route('addToCart', $item->id) }}" method="POST" class="mr-2">
+                                            <form action="{{ route('cart.increment', $item) }}" method="POST" class="mr-2">
                                                 @csrf
                                                 <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-md">+</button>
                                             </form>
@@ -36,6 +36,8 @@
                                                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-md">Remove</button>
                                             </form>
                                         </div>
+
+
                                     </li>
                                 @endforeach
                                 <li class="pt-4">

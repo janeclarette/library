@@ -58,7 +58,7 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::post('/genre', [GenreController::class, 'store'])->name('genres.store');
     Route::get('/genres/{genre}/edit', [GenreController::class, 'edit'])->name('genres.edit');
     Route::put('/genres/{genre}', [GenreController::class, 'update'])->name('genres.update');
-    Route::get('/genre/{id}', [GenreController::class, 'delete'])->name('genres.delete');
+    Route::delete('/genres/{genre}', [GenreController::class, 'delete'])->name('genres.delete');
 
     Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers.index');
     Route::get('/suppliers/create', [SupplierController::class, 'create'])->name('suppliers.create');
@@ -76,6 +76,15 @@ Route::get('orders/{order}/edit', [OrderController::class, 'edit'])->name('admin
 Route::put('orders/{order}', [OrderController::class, 'update'])->name('admin.orders.update');
 Route::get('/users/dashboard', [UserController::class, 'dashboard'])->name('users.dashboard');
 
+
+Route::get('/top-selling-books', [TopSellingBooksController::class, 'TopSellingBooks']);
+
+Route::get('/charts/monthly-sales-trend', [ChartController::class, 'monthlySalesTrend']);
+Route::get('/revenue-by-genre', [RevenueByGenreChartController::class, 'revenueByGenre']);
+Route::get('/monthly-sales-trend', [MonthlySalesTrendController::class, 'monthlySalesTrend']);
+Route::get('/top-authors', [TopAuthorsController::class, 'topAuthors'])->name('top_authors');
+
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -85,14 +94,27 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile/update-image', [ProfileController::class, 'updateImage'])->name('profile.update-image');
 
     Route::post('/cart/add/{book}', [CartController::class, 'add'])->name('cart.add');
-
-    Route::get('/cart', [CartController::class, 'index'])->name('cart'); // Update the route name
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/{item}/increment', [CartController::class, 'increment'])->name('cart.increment');
     Route::post('/reduce-by-one/{id}', [CartController::class, 'reduceByOne'])->name('reduceByOne');
     Route::post('/remove-item/{id}', [CartController::class, 'removeItem'])->name('removeItem');
+    
 
-    Route::post('/cart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
+    Route::get('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])->name('checkout.dashboard');
 
-
+    Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
+    Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+    
+    
+    Route::post('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])->name('checkout.dashboard');
+    Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
+    Route::get('/order/dashboard', [OrderController::class, 'dashboard'])->name('order.dashboard');
+    Route::post('/order/{orderId}/review', [OrderController::class, 'reviewOrder'])->name('order.review');
+    Route::get('/reviews/create/{orderId}', [ReviewController::class, 'create'])->name('review.create');
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('review.store');
+    
+    
    
 
 
@@ -116,27 +138,5 @@ require __DIR__.'/adminauth.php';
 
 
 
-Route::get('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])->name('checkout.dashboard');
-
-Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
-Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
-
-
-Route::post('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])->name('checkout.dashboard');
-Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
-Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
-Route::get('/order/dashboard', [OrderController::class, 'dashboard'])->name('order.dashboard');
-Route::post('/order/{orderId}/review', [OrderController::class, 'reviewOrder'])->name('order.review');
-Route::get('/reviews/create/{orderId}', [ReviewController::class, 'create'])->name('review.create');
-Route::post('/reviews', [ReviewController::class, 'store'])->name('review.store');
-
-
-
-Route::get('/top-selling-books', [TopSellingBooksController::class, 'TopSellingBooks']);
-
-Route::get('/charts/monthly-sales-trend', [ChartController::class, 'monthlySalesTrend']);
-Route::get('/revenue-by-genre', [RevenueByGenreChartController::class, 'revenueByGenre']);
-Route::get('/monthly-sales-trend', [MonthlySalesTrendController::class, 'monthlySalesTrend']);
-Route::get('/top-authors', [TopAuthorsController::class, 'topAuthors'])->name('top_authors');
 
 Route::get('/emails/pdf', [PDFController::class, 'index']);
