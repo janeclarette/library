@@ -68,6 +68,7 @@
     <div class="form-group">
 
         <h2>Edit Author</h2>
+        
         <form method="post" action="{{ route('authors.update', $author->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT') 
@@ -96,4 +97,5 @@
         </form>
     </div>
 </body>
+
 </html>

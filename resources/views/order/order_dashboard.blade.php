@@ -1,37 +1,49 @@
-<!-- order_dashboard.blade.php -->
+
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-2xl font-semibold text-gray-900 leading-tight">
             {{ __("Order Dashboard") }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h3>Your Orders:</h3>
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold mb-4">Your Orders:</h3>
                     @if($orders->isNotEmpty())
-                        <ul class="list-group">
-                        @foreach($orders as $order)
-    <li class="list-group-item">
-        <br>
-        <p>Order ID: {{ $order->order_id }}</p>
-        <p>Book Name: {{ $order->book_name }}</p>
-        Date Ordered: {{ $order->date_ordered }}
-        <br>
-        Payment Method: {{ $order->payment_method }}
-        <br>
-        Courier: {{ $order->courier }}
-        <br>
-        Status: {{ $order->status }}
-        <br>
-    </li>
-@endforeach
-
+                        <ul class="divide-y divide-gray-200">
+                            @foreach($orders as $order)
+                                <li class="py-4">
+                                    <div class="mb-2">
+                                        <span class="text-lg font-semibold">Order ID:</span>
+                                        <span>{{ $order->order_id }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <span class="text-lg font-semibold">Book Name:</span>
+                                        <span>{{ $order->book_name }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <span class="text-lg font-semibold">Date Ordered:</span>
+                                        <span>{{ $order->date_ordered }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <span class="text-lg font-semibold">Payment Method:</span>
+                                        <span>{{ $order->payment_method }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <span class="text-lg font-semibold">Courier:</span>
+                                        <span>{{ $order->courier }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <span class="text-lg font-semibold">Status:</span>
+                                        <span>{{ $order->status }}</span>
+                                    </div>
+                                </li>
+                            @endforeach
                         </ul>
                     @else
-                        <p>No orders found.</p>
+                        <p class="text-lg">No orders found.</p>
                     @endif
                 </div>
             </div>

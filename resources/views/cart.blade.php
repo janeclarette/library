@@ -1,48 +1,52 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-2xl font-semibold text-gray-900 leading-tight">
             {{ __("Shopping Cart") }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
+                <div class="p-6">
                     @csrf
                     @if($cartItems->isNotEmpty())
-                        <form action="{{ route('checkout') }}" method="POST">
-                            <ul class="list-group">
+                        <form action="{{ route('checkout') }}" method="POST" class="mb-6">
+                            <ul class="divide-y divide-gray-200">
                                 @foreach($cartItems as $item)
-                                    <li class="list-group-item flex justify-between items-center">
-                                        <div>
-                                            <input type="checkbox" name="selected_items[]" value="{{ $item->id }}">
-                                            <span class="badge">{{ $item->quantity }}</span>
-                                            <strong>{{ $item->book->name }}</strong>
-                                            <span class="label label-success">{{ $item->book->price }}</span>
+                                    <li class="py-4 flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" name="selected_items[]" value="{{ $item->id }}" class="mr-4">
+                                            <span class="text-lg font-semibold">{{ $item->quantity }}</span>
+                                            <span class="ml-4">{{ $item->book->name }}</span>
+                                            <span class="ml-4 text-gray-600">${{ $item->book->price }}</span>
                                         </div>
                                         
-                                        <div>
-                                            <form action="{{ route('addToCart', $item->id) }}" method="POST" class="inline-block">
+                                        <div class="flex items-center">
+                                            <form action="{{ route('addToCart', $item->id) }}" method="POST" class="mr-2">
                                                 @csrf
-                                                <button type="submit" class="btn btn-success btn-xs">+</button>
+                                                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded-md">+</button>
                                             </form>
-                                            <form action="{{ route('reduceByOne', $item->id) }}" method="POST" class="inline-block">
+                                            <form action="{{ route('reduceByOne', $item->id) }}" method="POST" class="mr-2">
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-xs">-</button>
+                                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-md">-</button>
                                             </form>
-                                            <form action="{{ route('removeItem', $item->id) }}" method="POST" class="inline-block ml-1">
+                                            <form action="{{ route('removeItem', $item->id) }}" method="POST" class="mr-2">
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-xs">Remove</button>
+                                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-md">Remove</button>
                                             </form>
                                         </div>
                                     </li>
                                 @endforeach
-                                <button type="submit" class="btn btn-primary mt-3">Proceed to Checkout</button>
+                                <li class="pt-4">
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Proceed to Checkout</button>
+                                </li>
                             </ul>
                         </form>
                     @else
-                        <h2>No Items in Cart!</h2>
+                        <div class="text-center">
+                            <h2 class="text-xl font-semibold mb-4">No Items in Cart!</h2>
+                        </div>
                     @endif
                 </div>
             </div>

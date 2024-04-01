@@ -1,27 +1,15 @@
 @include('../admin/dashboard')
-
-<script>
-    // Dynamic update of logo and profile picture
-    document.addEventListener("DOMContentLoaded", function() {
-        const logo = '../images/logo1.png';  // Replace with the actual path of the logo
-        const profilePic = '../images/Rizza.jpg';  // Replace with the actual path of the profile picture
-
-        const logoElement = document.querySelector('.logo');
-        const profilePicElement = document.querySelector('.profile-pic');
-
-        logoElement.src = logo;
-        profilePicElement.src = profilePic;
-    });
-</script>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Genre</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <style>
     body{
         margin-left: 250px;
@@ -72,6 +60,9 @@
             transition: 200ms;
         }
 </style>
+
+</head>
+
 <body>
     <div class="container-main">
         <div class="inner-container"> 
