@@ -16,6 +16,8 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\TopSellingBooksController;
 use App\Http\Controllers\RevenueByGenreChartController;
 use App\Http\Controllers\MonthlySalesTrendController;
+use App\Http\Controllers\TopAuthorsController;
+
 
 
 
@@ -128,3 +130,4 @@ Route::get('/top-selling-books', [TopSellingBooksController::class, 'TopSellingB
 Route::get('/charts/monthly-sales-trend', [ChartController::class, 'monthlySalesTrend']);
 Route::get('/revenue-by-genre', [RevenueByGenreChartController::class, 'revenueByGenre']);
 Route::get('/monthly-sales-trend', [MonthlySalesTrendController::class, 'monthlySalesTrend']);
+Route::get('/top-authors', [TopAuthorsController::class, 'topAuthors'])->name('top_authors');

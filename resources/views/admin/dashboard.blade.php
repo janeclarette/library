@@ -191,11 +191,11 @@
         <a href="{{ url('/top-selling-books') }}" class="icon">
         <i class='bx bxs-chart'></i><p> Top Selling Books </p>
     </a>
-    <a href="{{ url('/revenue-by-genre') }}" class="icon">
-        <i class='bx bxs-chart'></i><p> Revenue by Genre </p>
+    <a href="{{ url('/top-authors') }}" class="icon">
+        <i class='bx bxs-chart'></i><p> Best Selling Authors </p>
     </a>
     <a href="{{ url('/monthly-sales-trend') }}" class="icon">
-        <i class='bx bxs-chart'></i><p> Monthly Sales Trend </p>
+        <i class='bx bxs-chart'></i><p> Monthly Sales </p>
     </a>
     </div>
 
