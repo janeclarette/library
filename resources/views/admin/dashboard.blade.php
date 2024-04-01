@@ -188,13 +188,13 @@
         <a href="{{ route('admin.orders.index') }}" class="icon">
             <i class='bx bxs-cart'></i><p> Orders </p>
         </a>
-        <a href="{{ url('/charts/top-selling-books') }}" class="icon">
+        <a href="{{ url('/top-selling-books') }}" class="icon">
         <i class='bx bxs-chart'></i><p> Top Selling Books </p>
     </a>
-    <a href="{{ url('/charts/revenue-by-genre') }}" class="icon">
+    <a href="{{ url('/revenue-by-genre') }}" class="icon">
         <i class='bx bxs-chart'></i><p> Revenue by Genre </p>
     </a>
-    <a href="{{ url('/charts/monthly-sales-trend') }}" class="icon">
+    <a href="{{ url('/monthly-sales-trend') }}" class="icon">
         <i class='bx bxs-chart'></i><p> Monthly Sales Trend </p>
     </a>
     </div>
