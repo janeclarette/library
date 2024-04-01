@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-2xl font-semibold text-gray-900 leading-tight">
@@ -39,6 +38,14 @@
                                         <span class="text-lg font-semibold">Status:</span>
                                         <span>{{ $order->status }}</span>
                                     </div>
+                                    @if(trim($order->status) === 'Shipped')
+                                        <form action="{{ route('review.create', $order->id) }}" method="GET">
+                                            @csrf
+                                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                                Review Order
+                                            </button>
+                                        </form>
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>

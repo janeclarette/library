@@ -22,7 +22,22 @@ class OrderController extends Controller
         return view('order.order_dashboard', compact('orders'));
     }
     
-    
+    public function reviewOrder(Request $request, $orderId)
+{
+    // Validate the request if necessary
+
+    // Find the order
+    $order = Order::findOrFail($orderId);
+
+    // Perform additional checks if necessary, such as ensuring the order belongs to the authenticated user
+
+    // Update the order status to "reviewed" or any other appropriate status
+    $order->update(['status' => 'reviewed']);
+
+    // Optionally, redirect the user back to the dashboard or to a thank you page
+    return redirect()->route('order.dashboard')->with('success', 'Order reviewed successfully.');
+}
+
     
 
     public function index()

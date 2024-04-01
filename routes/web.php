@@ -17,6 +17,8 @@ use App\Http\Controllers\TopSellingBooksController;
 use App\Http\Controllers\RevenueByGenreChartController;
 use App\Http\Controllers\MonthlySalesTrendController;
 use App\Http\Controllers\TopAuthorsController;
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ReviewController;
 
 
 
@@ -124,6 +126,11 @@ Route::post('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])
 Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
 Route::get('/order/dashboard', [OrderController::class, 'dashboard'])->name('order.dashboard');
+Route::post('/order/{orderId}/review', [OrderController::class, 'reviewOrder'])->name('order.review');
+Route::get('/reviews/create/{orderId}', [ReviewController::class, 'create'])->name('review.create');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('review.store');
+
+
 
 Route::get('/top-selling-books', [TopSellingBooksController::class, 'TopSellingBooks']);
 
@@ -131,3 +138,5 @@ Route::get('/charts/monthly-sales-trend', [ChartController::class, 'monthlySales
 Route::get('/revenue-by-genre', [RevenueByGenreChartController::class, 'revenueByGenre']);
 Route::get('/monthly-sales-trend', [MonthlySalesTrendController::class, 'monthlySalesTrend']);
 Route::get('/top-authors', [TopAuthorsController::class, 'topAuthors'])->name('top_authors');
+
+Route::get('/emails/pdf', [PDFController::class, 'index']);
