@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Book; 
 
+
 class SupplierController extends Controller
 {
     public function index()

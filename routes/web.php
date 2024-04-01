@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ChartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,16 @@ Route::middleware(['auth:admin', 'verified'])->group(function () {
     Route::get('/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('suppliers.edit');
     Route::put('/suppliers/{supplier}', [SupplierController::class, 'update'])->name('suppliers.update');
     Route::get('/suppliers/{supplier}', [SupplierController::class, 'delete'])->name('suppliers.delete');
+
+
+Route::get('/admin/dashboard', [UserController::class, 'showDashboard'])->name('admin.dashboard');
+Route::post('/admin/user/{user}/activate', [UserController::class, 'activate'])->name('admin.user.activate');
+Route::put('/admin/user/{user}/deactivate', [UserController::class, 'deactivate'])->name('admin.user.deactivate');
+Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
+Route::get('orders/{order}/edit', [OrderController::class, 'edit'])->name('admin.orders.edit');
+Route::put('orders/{order}', [OrderController::class, 'update'])->name('admin.orders.update');
+Route::get('/users/dashboard', [UserController::class, 'dashboard'])->name('users.dashboard');
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -94,11 +106,6 @@ Route::get('/admin/dashboard', function () {
 require __DIR__.'/adminauth.php';
 
 
-Route::get('/admin/dashboard', [UserController::class, 'showDashboard'])->name('admin.dashboard');
-Route::post('/admin/user/{user}/activate', [UserController::class, 'activate'])->name('admin.user.activate');
-Route::put('/admin/user/{user}/deactivate', [UserController::class, 'deactivate'])->name('admin.user.deactivate');
-
-Route::get('/users/dashboard', [UserController::class, 'dashboard'])->name('users.dashboard');
 
 Route::get('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])->name('checkout.dashboard');
 
@@ -108,3 +115,9 @@ Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('
 
 Route::post('/checkout/dashboard', [CheckoutController::class, 'showDashboard'])->name('checkout.dashboard');
 Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
+Route::get('/order/dashboard', [OrderController::class, 'dashboard'])->name('order.dashboard');
+
+Route::get('/charts/top-selling-books', [ChartController::class, 'topSellingBooks']);
+Route::get('/charts/revenue-by-genre', [ChartController::class, 'revenueByGenre']);
+Route::get('/charts/monthly-sales-trend', [ChartController::class, 'monthlySalesTrend']);

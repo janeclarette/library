@@ -29,14 +29,17 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('cart')" :active="request()->routeIs('cart.index')">
-                    {{ __('Cart') }}
-                </x-nav-link>
-                <x-nav-link :href="route('checkout.dashboard')" :active="request()->routeIs('checkout.dashboard')">
-        {{ __('Checkout Dashboard') }}
-    </x-nav-link>
+                        {{ __('Cart') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('checkout.dashboard')" :active="request()->routeIs('checkout.dashboard')">
+                        {{ __('Checkout') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('order.dashboard')" :active="request()->routeIs('order.dashboard')">
+                        {{ __('Orders') }}
+                    </x-nav-link>
                 
                 <form action="{{route('dashboard')}}" method="GET" class="mt-4">
-                    <input type="text" name="search" placeholder="Search a Book" class="border border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" style="width: 600px; height: 30px;">
+                    <input type="text" name="search" placeholder="Search a Book" class="border border-gray-400 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" style="width: 400px; height: 30px;">
                     <button class="bg-custom hover:bg-custom:hover text-white font-bold py-1 px-4 rounded">
                         Search
                     </button>

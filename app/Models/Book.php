@@ -33,4 +33,9 @@ class Book extends Model
     {
         return $this->hasMany(Supplier::class);
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'book_id');
+    }
+    
 }

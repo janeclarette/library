@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Cart;
-
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 
 {   
 
 
-        public function index()
+    public function index()
     {
         $cartItems = Cart::where('user_id', auth()->id())
                         ->where('processed', false) // Filter out processed items
@@ -23,21 +23,27 @@ class CartController extends Controller
 
     public function add(Request $request, Book $book)
     {
+        // Check if the book is already in the cart
         $cart = Cart::where('user_id', auth()->id())
                     ->where('book_id', $book->id)
+                    ->where('processed', false)
                     ->first();
-    
+
         if ($cart) {
+            // If the book is in the cart, increment the quantity
             $cart->quantity++;
             $cart->save();
         } else {
+            // If the book is not in the cart, create a new cart item
             Cart::create([
                 'user_id' => auth()->id(),
                 'book_id' => $book->id,
                 'quantity' => 1,
+                'processed' => false,
             ]);
         }
-    
+
+        // Redirect back to the cart page
         return redirect()->back()->with('success', 'Book added to cart successfully.');
     }
     public function reduceByOne($id)
@@ -73,18 +79,14 @@ class CartController extends Controller
         public function checkout(Request $request)
         {
             $selectedItems = $request->input('selected_items', []);
-        
-            // Fetch the selected items from the cart
-            $cartItems = Cart::whereIn('id', $selectedItems)->get();
-        
+    
             // Mark selected items as processed
             Cart::whereIn('id', $selectedItems)->update(['processed' => true]);
-        
+    
             // Store the selected item IDs in the session
             $request->session()->put('selected_items', $selectedItems);
-        
-            return view('checkout.dashboard', compact('cartItems'));
+    
+            return redirect()->route('checkout.dashboard');
         }
-        
 
 }

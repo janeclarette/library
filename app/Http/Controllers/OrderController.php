@@ -2,26 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Order;
+
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-   /*  public function checkout(Request $request)
+   
+    public function dashboard()
     {
-        // Logic to handle checkout process and store order details
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'date_ordered' => now(),
-            'courier' => $request->input('courier'),
-            'status' => 'Pending', // Initial status
-            'shipping_fee' => $request->input('shipping_fee'),
-            'payment_method' => $request->input('payment_method'),
-            'received' => 0, // Default to not received
-            'cancellation_reason' => null, // Initially no cancellation reason
-        ]); */
+        // Fetch distinct orders for the authenticated user with book details using Eloquent
+        $orders = Order::with('book')
+                        ->where('user_id', auth()->user()->id)
+                        ->get();
+    
+        // Render the order dashboard view with the fetched orders
+        return view('order.order_dashboard', compact('orders'));
+    }
+    
+    
+    
 
-        // Additional logic for storing order items, if needed
+    public function index()
+    {
+        $orders = Order::all();
+        return view('admin.orders.index', compact('orders'));
+    }
 
-        // Redirect or return response as needed
-    /* } */
+    public function edit(Order $order)
+    {
+        return view('admin.orders.edit', compact('order'));
+    }
+
+    public function update(Request $request, Order $order)
+    {
+        $order->update($request->all());
+        return redirect()->route('admin.orders.index')->with('success', 'Order status updated successfully.');
+    }
 }
