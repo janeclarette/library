@@ -1,17 +1,16 @@
-
 @include('../admin/dashboard')
 @extends('layouts.master')
 <style>
     .chart-container {
-   
+    /* Add styles to the chart container */
     background: #EEE9DA;
-    width: 100%;
+    width: 100%; /* Example width */
     max-width: 800p
-    x; 
+    x; /* Example max-width */
     margin-top: 80px;
-    margin-left: 90px; 
-    padding: 20px; 
-    border-radius: 10px; 
+    margin-left: 90px; /* Center horizontally */
+    padding: 20px; /* Example padding */
+    border-radius: 10px; /* Example border-radius */
 }
     </style>
 @section('content')

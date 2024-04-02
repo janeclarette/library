@@ -13,14 +13,30 @@
                     @if($cartItems->isNotEmpty())
                         <form action="{{ route('checkout') }}" method="POST" class="mb-6">
                             <ul class="divide-y divide-gray-200">
+                                <!-- Cart Header -->
+                                <li class="py-4 flex justify-between items-center font-semibold">
+                                    <span class="w-1/4">Product</span>
+                                    <span class="w-1/4 text-center">Unit Price</span>
+                                    <span class="w-1/4 text-center">Quantity</span>
+                                    <span class="w-1/4 text-center">Total Price</span>
+                                    <span class="w-1/4 text-center">Actions</span>
+                                </li>
+
+                                <!-- Cart Items -->
                                 @foreach($cartItems as $item)
                                     <li class="py-4 flex justify-between items-center">
-                                        <div class="flex items-center">
+                                        <div class="flex items-center w-1/4">
                                             <input type="checkbox" name="selected_items[]" value="{{ $item->id }}" class="mr-4">
-                                            <span class="text-lg font-semibold">{{ $item->quantity }}</span>
-                                            <span class="ml-4">{{ $item->book->name }}</span>
-                                            <span class="ml-4 text-gray-600">${{ $item->book->price }}</span>
+                                            <span>{{ $item->book->name }}</span>
                                         </div>
+                                        
+                                        <span class="w-1/4 text-center">${{ $item->book->price }}</span>
+                                        
+                                        <div class="flex items-center w-1/4 text-center">
+                                            <span>{{ $item->quantity }}</span>
+                                        </div>
+                                        
+                                        <span class="w-1/4 text-center">${{ $item->book->price * $item->quantity }}</span>
                                         
                                         <div class="flex items-center">
                                             <form action="{{ route('cart.increment', $item) }}" method="POST" class="mr-2">
@@ -36,11 +52,11 @@
                                                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded-md">Remove</button>
                                             </form>
                                         </div>
-
-
                                     </li>
                                 @endforeach
-                                <li class="pt-4">
+                                
+                                <!-- Proceed to Checkout Button -->
+                                <li class="pt-4 flex justify-end">
                                     <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Proceed to Checkout</button>
                                 </li>
                             </ul>

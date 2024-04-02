@@ -32,13 +32,13 @@
                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                 @else
                     <!-- Admin Login Button -->
-                    <a href="{{ route('admin.login') }}" class="btn btn-admin mb-4 mr-4">
+                    <a href="{{ route('admin.register') }}" class="btn btn-admin mb-4 mr-4">
                         <i class='bx bxs-user' style='margin-top: 131px; font-size: 5.5em;'></i> <!-- Increased icon size -->
                         <span style="font-size: 1.5em;">Admin Login</span>
                     </a>
 
                     <!-- User Login Button -->
-                    <a href="{{ route('login') }}" class="btn btn-user mb-4">
+                    <a href="{{ route('register') }}" class="btn btn-user mb-4">
                         <i class='bx bx-user' style='margin-top: 131px; font-size: 5.5em;'></i> <!-- Increased icon size -->
                         <span style= "font-size: 1.5em;">User Login </span>
                     </a>
