@@ -18,24 +18,23 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the request
+
         $validatedData = $request->validate([
             'order_id' => 'required|exists:orders,id',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|max:255',
         ]);
     
-        // Create a new review instance
-        $review = new OrderReview(); // Use the correct Review model
+
+        $review = new OrderReview(); 
         $review->order_id = $validatedData['order_id'];
-        $review->user_id = auth()->user()->id; // Assuming the user is authenticated
+        $review->user_id = auth()->user()->id; 
         $review->rating = $validatedData['rating'];
         $review->comment = $validatedData['comment'];
-    
-        // Save the review
+
         $review->save();
     
-        // Optionally, you might want to redirect the user back with a success message
+
         return Redirect::route('order.dashboard')->with('success', 'Review submitted successfully.');
     }
     

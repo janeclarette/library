@@ -75,7 +75,7 @@ class SupplierController extends Controller
         $supplier->transactiondate = $request->transactiondate;
         $supplier->quantity = $request->quantity;
     
-        // Handle image upload if provided
+
         if ($request->hasFile('img_path')) {
             $imagePaths = [];
             foreach ($request->file('img_path') as $image) {

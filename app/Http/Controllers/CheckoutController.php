@@ -21,10 +21,10 @@ public function showDashboard()
     $selectedItems = session('selected_items', []);
     $cartItems = Cart::whereIn('id', $selectedItems)->get();
     
-    // Fetch the book associated with the first item in the cart (assuming there's only one book per order)
+    
     $book = $cartItems->isNotEmpty() ? $cartItems->first()->book : null;
 
-    // Fetch the user's address
+
     $userAddress = auth()->user()->address;
 
     return view('checkout.dashboard', compact('cartItems', 'book', 'userAddress'));

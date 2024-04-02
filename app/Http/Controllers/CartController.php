@@ -15,7 +15,7 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = Cart::where('user_id', auth()->id())
-                        ->where('processed', false) // Filter out processed items
+                        ->where('processed', false) 
                         ->get();
         return view('cart', compact('cartItems'));
     }
@@ -23,18 +23,18 @@ class CartController extends Controller
 
     public function add(Request $request, Book $book)
     {
-        // Check if the book is already in the cart
+
         $cart = Cart::where('user_id', auth()->id())
                     ->where('book_id', $book->id)
                     ->where('processed', false)
                     ->first();
 
         if ($cart) {
-            // If the book is in the cart, increment the quantity
+
             $cart->quantity++;
             $cart->save();
         } else {
-            // If the book is not in the cart, create a new cart item
+
             Cart::create([
                 'user_id' => auth()->id(),
                 'book_id' => $book->id,
@@ -43,18 +43,18 @@ class CartController extends Controller
             ]);
         }
 
-        // Redirect back to the cart page
+
         return redirect()->back()->with('success', 'Book added to cart successfully.');
     }
 
     public function increment(Cart $item)
     {
-        // Check if the item belongs to the authenticated user
+
         if ($item->user_id !== auth()->id()) {
-            abort(403); // Unauthorized
+            abort(403);
         }
     
-        // Increment the quasntity
+
         $item->quantity++;
         $item->save();
     
@@ -96,10 +96,10 @@ class CartController extends Controller
         {
             $selectedItems = $request->input('selected_items', []);
     
-            // Mark selected items as processed
+
             Cart::whereIn('id', $selectedItems)->update(['processed' => true]);
     
-            // Store the selected item IDs in the session
+
             $request->session()->put('selected_items', $selectedItems);
     
             return redirect()->route('checkout.dashboard');

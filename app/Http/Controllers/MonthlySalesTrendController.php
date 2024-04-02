@@ -10,11 +10,11 @@ class MonthlySalesTrendController extends Controller
 {
     public function monthlySalesTrend()
     {
-        $monthlySalesData = DB::table('carts')
-            ->join('books', 'carts.book_id', '=', 'books.id')
+        $monthlySalesData = DB::table('orders')
+            ->join('books', 'orders.book_id', '=', 'books.id')
             ->select(
-                DB::raw("DATE_FORMAT(carts.created_at, '%Y-%m') AS month_year"),
-                DB::raw("SUM(books.price * carts.quantity) AS total_revenue")
+                DB::raw("DATE_FORMAT(orders.date_ordered, '%Y-%m') AS month_year"),
+                DB::raw("SUM(books.price) AS total_revenue")
             )
             ->groupBy('month_year')
             ->orderBy('month_year')

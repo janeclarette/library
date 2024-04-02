@@ -13,12 +13,11 @@ class OrderController extends Controller
    
     public function dashboard()
     {
-        // Fetch distinct orders for the authenticated user with book details using Eloquent
+
         $orders = Order::with('book')
                         ->where('user_id', auth()->user()->id)
                         ->get();
     
-        // Render the order dashboard view with the fetched orders
         return view('order.order_dashboard', compact('orders'));
     }
     
