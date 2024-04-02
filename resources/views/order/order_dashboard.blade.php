@@ -33,15 +33,7 @@
                                     <div class="mb-2">
                                         <span class="text-lg font-semibold">Courier:</span>
                                         <span>{{ $order->courier }}</span>
-                                    </div>
-                                    <div class="mb-2">
-                                        <span class="text-lg font-semibold">Quantity:</span>
-                                        <span>{{ $order->quantity }}</span>
-                                    </div>
-                                    <div class="mb-2">
-                                        <span class="text-lg font-semibold">Total Price:</span>
-                                        <span>${{ $order->total_price }}</span>
-                                    </div>
+</div>
 
                                     <div class="mb-2">
                                         <span class="text-lg font-semibold">Status:</span>

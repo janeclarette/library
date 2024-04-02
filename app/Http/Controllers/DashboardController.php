@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\OrderReview;
 
 class DashboardController extends Controller
 {
@@ -35,14 +36,18 @@ class DashboardController extends Controller
         return view('dashboard', compact('books'));
     }
 
-public function view($id)
-{
+    public function view($id)
+    {
 
+        $book = Book::findOrFail($id);
+    
 
-    $book = Book::findOrFail($id);
-    return view('users.viewproduct', compact('book'));
-}
-
+        $orderReview = OrderReview::whereHas('order', function($query) use ($id) {
+            $query->where('book_id', $id);
+        })->first();
+    
+        return view('users.viewproduct', compact('book', 'orderReview'));
+    }
 
 }
 
