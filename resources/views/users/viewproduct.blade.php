@@ -29,6 +29,7 @@
                                 <span class="font-semibold">Genre:</span>
                                 <span>{{ $book->genre->name }}</span>
                             </div>
+
                             <div class="mb-2">
                                 <span class="font-semibold">Available:</span>
                                 @foreach ($book->suppliers as $supplier)
@@ -39,6 +40,14 @@
                                 <span class="font-semibold">Price:</span>
                                 <span>${{ $book->price }}</span>
                             </div>
+                    @if($orderReview)
+                        <div class="mb-4">
+                            <h3 class="text-xl font-semibold mb-2">Order Review</h3>
+                            <p>{{ $orderReview->comment }}</p>
+                        </div>
+                    @else
+                        <p>No review available for this order.</p>
+                    @endif
                             <form action="{{ route('cart.add', $book->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

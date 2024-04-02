@@ -139,4 +139,4 @@ require __DIR__.'/adminauth.php';
 
 
 
-Route::get('/emails/pdf', [PDFController::class, 'index']);
+//Route::get('/emails/pdf', [PDFController::class, 'index']);
